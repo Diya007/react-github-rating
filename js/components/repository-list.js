@@ -1,6 +1,3 @@
-
-
-
 var React = require('react');
 var connect = require('react-redux').connect;
 var Repository = require('./repository');
@@ -17,7 +14,7 @@ var RepositoryList = React.createClass({
         var repositories = this.props.repositories.map(function(repository) {
             //this.props.reposiotires means repositories are from parent componet,
             //only parent component can change repositories
-            return <Repository  =\]={repository} key={repository.name} />;
+            return <Repository repository={repository} key={repository.name} />;
         });
 
         return (

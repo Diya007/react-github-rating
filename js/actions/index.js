@@ -1,6 +1,4 @@
-//add repository to list
-//give the repository rating 
-
+// 2 actions 1. add respositories 2. rate repositories;
 var ADD_REPOSITORY = 'ADD_REPOSITORY';
 var addRepository = function(repository) {
     return {
