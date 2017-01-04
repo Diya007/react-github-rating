@@ -2,45 +2,35 @@ var actions = require('../actions/index');
 var initialRepositoryState = [];
 
 var repositoryReducer = function(state, action) {
-	//state is either initial state or returned state
-	//action is what user request 
-	if (action.type == actions.ADD_REPOSITORY) {
-		return state.concat ({
-		//merge array to state array
-			name: action.repository,
-			rating: null
-		});
-		
-	}
-	else if (action.type === actions.RATE_REPOSITORY) {
-		var index = -1;
-		//looking for the repo in state i want to change 
-		for(var i = 0; i<state.length; i++){
-			var repository = state[i];
-			if(repository.name == action.repository) {
-			//this is the repo i'm looking for !
-				index = i;
-				break
-				//what is the break for? 
-			}
-		if (index = -1) {
-			throw new Error ('could not find repostory');
-		}
+    state = state || initialRepositoryState;
+    if (action.type === actions.ADD_REPOSITORY) {
+        return state.concat({
+            name: action.repository,
+            rating: null
+        });
+    }
+    else if (action.type === actions.RATE_REPOSITORY) {
+        // Find the index of the matching repository
+        var index = -1;
+        for (var i=0; i<state.length; i++) {
+            var repository = state[i];
+            if (repository.name === action.repository) {
+                index = i;
+                break;
+            }
+        }
 
-		var before = state.slice(0,i);
-		//arrays before the changed repository 
-		var after = state.slice(i+1);
-		//arrays after the changed repository
-		var newRepository = Object.assign({}, repository, {rating: action.rating});
-		state = before.concat(newRepository, after);
+        if (index === -1) {
+            throw new Error('Could not find repository');
+        }
 
-		}
+        var before = state.slice(0, i);
+        var after = state.slice(i + 1);
+        var newRepository = Object.assign({}, repository, {rating: action.rating});
+        return before.concat(newRepository, after);
+    }
 
-		return  state
-		//new state with rating 
-	}
-}
-
-
+    return state;
+};
 
 exports.repositoryReducer = repositoryReducer;

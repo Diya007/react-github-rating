@@ -1,6 +1,7 @@
 var React = require('react');
 var connect = require('react-redux').connect;
 var StarRater = require('./star-rater');
+var actions = require('../actions/index')
 
 var Repository = React.createClass({
 
