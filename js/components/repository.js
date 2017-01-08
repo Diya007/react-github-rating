@@ -18,7 +18,7 @@ var Repository = React.createClass({
 	render: function() {
 		  return (
             <div className="repository">
-                {this.props.repository.name}
+                {this.props.repository.name} - {this.props.repository.description}
                 &nbsp;
                 <StarRater rating={this.props.repository.rating}
                            onChange={this.changeRating} />
