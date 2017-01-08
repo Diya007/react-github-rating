@@ -1,11 +1,12 @@
 var redux = require('redux');
 var createStore = redux.createStore;
+var applyMiddleware = redux.applyMiddleware;
+var thunk = require('redux-thunk').default;
 
 var reducers = require('./reducers/index');
 
-var store = createStore(reducers.repositoryReducer);
-
-module.exports = store;
+var store = createStore(reducers.repositoryReducer, applyMiddleware(thunk));
+module.exports  = store;
 
 //在哪执行dispatch ??？ 
 
